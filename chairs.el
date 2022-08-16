@@ -6,7 +6,7 @@
 ;; Package-Version: 0.1.0
 ;; Keywords: extensions, convenience
 ;; Package-Requires: ((emacs "28.1"))
-;; Homepage: https://foo.bar
+;; Homepage: https://github.com/ssl19/chairs.el
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -121,7 +121,7 @@
   "CHAnge and Add pAIRS."
   :group 'tools
   :prefix "chairs-"
-  :link '(url-link "https://foo.bar"))
+  :link '(url-link "https://github.com/ssl19/chairs.el"))
 
 (defcustom chairs-pairs-alist
   '((?\( . ?\))
