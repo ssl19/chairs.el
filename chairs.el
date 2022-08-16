@@ -23,12 +23,97 @@
 
 ;;; Commentary:
 
-;; * chair README :README:
+;; * chairs README                                                                 :README:
 ;; ** What is chairs
-;; chairs provides functionality of changing pairs or adding pairs commands.
+;; Chairs means CHAnging pAIRS.
+;;
+;; Chairs provides functionality of changing pairs or adding simple pairs commands,
+;; based on an excellent stuctural editing package [[https://github.com/AmaiKinono/puni][puni]].
+;;
+;; ** Usage
+;; *** Installation
+;; **** manual
+;; Add to ~load-path~
+;; #+begin_src elisp
+;;   (add-to-list 'load-path "/path/to/chairs.el/")
+;;   (require 'chairs)
+;; #+end_src
+;; **** Use straight.el
+;; #+begin_src elisp
+;;   (straight-use-package '(chairs :host github :repo "ssl19/chairs.el"))
+;; #+end_src
+;;
+;; *** Commands
+;; Chairs provides two commands: ~chairs-rewrap~ and ~chairs-add~
+;;
+;; ~chairs-rewrap~ is to change pairs of current sexp, ~chairs-add~ is to add pairs
+;; around current sexp.
+;;
+;; There are a few examples
+;; **** ~chairs-rewrap~
+;; #+begin_src elisp
+;;   (defun foo (arg)
+;;     (bar (cons "fo|o-bar" bar-foo)))
+;; #+end_src
+;; ~|~ means cursor postion.
+;;
+;; When we use ~chairs-rewrap~ command, it will ask to insert a char first, and after we
+;; insert =(= or =)=, the code snippet above will turn into:
+;;
+;; #+begin_src elisp
+;;   (defun foo (arg)
+;;     (bar (cons (fo|o-bar) bar-foo)))
+;; #+end_src
+;;
+;; **** chairs-add
+;; #+begin_src elisp
+;;   (defun foo (arg)
+;;     (bar (cons "foo-bar" ba|r-foo)))
+;; #+end_src
+;; This time we use ~chairs-add~ instead, after we insert =(= or =)=:
+;; #+begin_src elisp
+;;   (defun foo (arg)
+;;     (bar (cons "foo-bar" (ba|r-foo))))
+;; #+end_src
+;;
+;; *** User options
+;; **** keybindings
+;; #+begin_src emacs-lisp
+;; (global-set-key (kbd "s-r") #'chairs-rewrap)
+;; (global-set-key (kbd "s-s") #'chairs-add)
+;; #+end_src
+;; **** ~chairs-pairs-alist~
+;; ~chair-pairs-alist~ is an alist for defining pairs
+;; #+begin_src elisp
+;;   (setq chair-pairs-alist
+;;   '((?\( . ?\))
+;;     (?\[ . ?\])
+;;     (?\{ . ?\})
+;;     (?\< . ?\>)
+;;     (?\" . ?\")
+;;     (?\' . ?\')
+;;     (?\` . ((t . ?\`)
+;;             (emacs-lisp-mode . ?\')))))
+;; #+end_src
+;; We can define our own mode specific pairs like that.
+;;
+;; =C-h f= ~chair-pairs-alist~ for details.
+;;
+;; **** ~chairs-highlight-pairs~
+;; ~chairs-highlight-pairs~ is a boolean to enable highlight pairs or region when invoke
+;; ~chairs-rewrap~ and ~chair-add~ command. See Demo section for more information.
+;;
+;; **** ~chairs-overlay-highlight-face~
+;; Face of overlay created by chairs.
+;; ** Demo
+;; *** ~chairs-rewrap~
+;; [[./demos/chairs-rewrap.mov][chairs-rewrap demo]]
+;; *** ~chairs-add~
+;; [[./demos/chairs-add.mov][chairs-add demo]]
+
 
 ;;; Code:
-;; * chairs's code
+;; * chairs code
 
 (require 'puni)
 
