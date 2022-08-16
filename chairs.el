@@ -49,6 +49,9 @@
 ;; ~chairs-rewrap~ is to change pairs of current sexp, ~chairs-add~ is to add pairs
 ;; around current sexp.
 ;;
+;; For complex pairs like html tags, we can use ~puni-squeeze~ instead, and for
+;; deleting pairs, we can use ~puni-splice~.
+
 ;; There are a few examples
 ;; **** ~chairs-rewrap~
 ;; #+begin_src elisp
@@ -107,9 +110,9 @@
 ;; Face of overlay created by chairs.
 ;; ** Demo
 ;; *** ~chairs-rewrap~
-;; [[./demos/chairs-rewrap.mov][chairs-rewrap demo]]
+;; [[https://user-images.githubusercontent.com/22702214/184941777-b97fbdb3-8a6a-43e5-b8ce-68735a6c23d5.mov][chairs-rewrap demo]]
 ;; *** ~chairs-add~
-;; [[./demos/chairs-add.mov][chairs-add demo]]
+;; [[https://user-images.githubusercontent.com/22702214/184942480-8ff9c34b-6fb7-44a3-a811-e0831c9b49dc.mov][chairs-add demo]]
 
 
 ;;; Code:

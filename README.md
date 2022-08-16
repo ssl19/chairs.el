@@ -3,23 +3,23 @@ Note: this file is auto converted from chairs.el by [el2org](https://github.com/
 
 # Table of Contents
 
-1.  [chairs README](#orge3ebb4c)
-    1.  [What is chairs](#orgc8ead63)
-    2.  [Usage](#org800e7f2)
-        1.  [Installation](#org3b0cad7)
-        2.  [Commands](#org47e2342)
-        3.  [User options](#orge288552)
-    3.  [Demo](#orge8ae44d)
-        1.  [`chairs-rewrap`](#orgfea92cb)
-        2.  [`chairs-add`](#org24ea6fe)
+1.  [chairs README](#org033b291)
+    1.  [What is chairs](#orgbed075a)
+    2.  [Usage](#org1582507)
+        1.  [Installation](#org4362905)
+        2.  [Commands](#org4f9cba5)
+        3.  [User options](#orge75bf9d)
+    3.  [Demo](#org9ff4e7f)
+        1.  [`chairs-rewrap`](#org1ca2830)
+        2.  [`chairs-add`](#org9f6ca4c)
 
 
-<a id="orge3ebb4c"></a>
+<a id="org033b291"></a>
 
 # chairs README
 
 
-<a id="orgc8ead63"></a>
+<a id="orgbed075a"></a>
 
 ## What is chairs
 
@@ -29,12 +29,12 @@ Chairs provides functionality of changing pairs or adding simple pairs commands,
 based on an excellent stuctural editing package [puni](https://github.com/AmaiKinono/puni).
 
 
-<a id="org800e7f2"></a>
+<a id="org1582507"></a>
 
 ## Usage
 
 
-<a id="org3b0cad7"></a>
+<a id="org4362905"></a>
 
 ### Installation
 
@@ -50,7 +50,7 @@ based on an excellent stuctural editing package [puni](https://github.com/AmaiKi
         (straight-use-package '(chairs :host github :repo "ssl19/chairs.el"))
 
 
-<a id="org47e2342"></a>
+<a id="org4f9cba5"></a>
 
 ### Commands
 
@@ -58,6 +58,9 @@ Chairs provides two commands: `chairs-rewrap` and `chairs-add`
 
 `chairs-rewrap` is to change pairs of current sexp, `chairs-add` is to add pairs
 around current sexp.
+
+For complex pairs like html tags, we can use `puni-squeeze` instead, and for
+deleting pairs, we can use `puni-splice`.
 
 There are a few examples
 
@@ -85,7 +88,7 @@ There are a few examples
           (bar (cons "foo-bar" (ba|r-foo))))
 
 
-<a id="orge288552"></a>
+<a id="orge75bf9d"></a>
 
 ### User options
 
@@ -122,21 +125,21 @@ There are a few examples
     Face of overlay created by chairs.
 
 
-<a id="orge8ae44d"></a>
+<a id="org9ff4e7f"></a>
 
 ## Demo
 
 
-<a id="orgfea92cb"></a>
+<a id="org1ca2830"></a>
 
 ### `chairs-rewrap`
 
-[chairs-rewrap demo](./demos/chairs-rewrap.mov)
+[chairs-rewrap demo](https://user-images.githubusercontent.com/22702214/184941777-b97fbdb3-8a6a-43e5-b8ce-68735a6c23d5.mov)
 
 
-<a id="org24ea6fe"></a>
+<a id="org9f6ca4c"></a>
 
 ### `chairs-add`
 
-[chairs-add demo](./demos/chairs-add.mov)
+[chairs-add demo](https://user-images.githubusercontent.com/22702214/184942480-8ff9c34b-6fb7-44a3-a811-e0831c9b49dc.mov)
 
