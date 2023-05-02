@@ -3,38 +3,38 @@ Note: this file is auto converted from chairs.el by [el2org](https://github.com/
 
 # Table of Contents
 
-1.  [chairs README](#org033b291)
-    1.  [What is chairs](#orgbed075a)
-    2.  [Usage](#org1582507)
-        1.  [Installation](#org4362905)
-        2.  [Commands](#org4f9cba5)
-        3.  [User options](#orge75bf9d)
-    3.  [Demo](#org9ff4e7f)
-        1.  [`chairs-rewrap`](#org1ca2830)
-        2.  [`chairs-add`](#org9f6ca4c)
+1.  [chairs README](#org41d5b33)
+    1.  [What is chairs](#orgd863fdb)
+    2.  [Usage](#org25603f6)
+        1.  [Installation](#orgd2c9804)
+        2.  [Commands](#org81ac67d)
+        3.  [User options](#orgeb8fcac)
+    3.  [Demo](#org9bf399c)
+        1.  [`chairs-rewrap`](#orga6d2591)
+        2.  [`chairs-add`](#orge8371b4)
 
 
-<a id="org033b291"></a>
+<a id="org41d5b33"></a>
 
 # chairs README
 
 
-<a id="orgbed075a"></a>
+<a id="orgd863fdb"></a>
 
 ## What is chairs
 
 Chairs means CHAnging pAIRS.
 
 Chairs provides functionality of changing pairs or adding simple pairs commands,
-based on an excellent stuctural editing package [puni](https://github.com/AmaiKinono/puni).
+based on [expand-region](<https://github.com/magnars/expand-region.el>).
 
 
-<a id="org1582507"></a>
+<a id="org25603f6"></a>
 
 ## Usage
 
 
-<a id="org4362905"></a>
+<a id="orgd2c9804"></a>
 
 ### Installation
 
@@ -50,7 +50,7 @@ based on an excellent stuctural editing package [puni](https://github.com/AmaiKi
         (straight-use-package '(chairs :host github :repo "ssl19/chairs.el"))
 
 
-<a id="org4f9cba5"></a>
+<a id="org81ac67d"></a>
 
 ### Commands
 
@@ -59,6 +59,7 @@ Chairs provides two commands: `chairs-rewrap` and `chairs-add`
 `chairs-rewrap` is to change pairs of current sexp, `chairs-add` is to add pairs
 around current sexp.
 
+Use with [puni](https://github.com/AmaiKinono/puni).
 For complex pairs like html tags, we can use `puni-squeeze` instead, and for
 deleting pairs, we can use `puni-splice`.
 
@@ -88,7 +89,7 @@ There are a few examples
           (bar (cons "foo-bar" (ba|r-foo))))
 
 
-<a id="orge75bf9d"></a>
+<a id="orgeb8fcac"></a>
 
 ### User options
 
@@ -125,19 +126,19 @@ There are a few examples
     Face of overlay created by chairs.
 
 
-<a id="org9ff4e7f"></a>
+<a id="org9bf399c"></a>
 
 ## Demo
 
 
-<a id="org1ca2830"></a>
+<a id="orga6d2591"></a>
 
 ### `chairs-rewrap`
 
 [chairs-rewrap demo](https://user-images.githubusercontent.com/22702214/184941777-b97fbdb3-8a6a-43e5-b8ce-68735a6c23d5.mov)
 
 
-<a id="org9f6ca4c"></a>
+<a id="orge8371b4"></a>
 
 ### `chairs-add`
 

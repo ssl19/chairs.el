@@ -5,7 +5,7 @@
 
 ;; Package-Version: 0.1.0
 ;; Keywords: extensions, convenience
-;; Package-Requires: ((emacs "28.1"))
+;; Package-Requires: ((emacs "28.1") (expand-region "0.7"))
 ;; Homepage: https://github.com/ssl19/chairs.el
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 ;; Chairs means CHAnging pAIRS.
 ;;
 ;; Chairs provides functionality of changing pairs or adding simple pairs commands,
-;; based on an excellent stuctural editing package [[https://github.com/AmaiKinono/puni][puni]].
+;; based on [expand-region](https://github.com/magnars/expand-region.el).
 ;;
 ;; ** Usage
 ;; *** Installation
@@ -49,6 +49,8 @@
 ;; ~chairs-rewrap~ is to change pairs of current sexp, ~chairs-add~ is to add pairs
 ;; around current sexp.
 ;;
+
+;; Use with [[https://github.com/AmaiKinono/puni][puni]].
 ;; For complex pairs like html tags, we can use ~puni-squeeze~ instead, and for
 ;; deleting pairs, we can use ~puni-splice~.
 
@@ -118,7 +120,7 @@
 ;;; Code:
 ;; * chairs code
 
-(require 'puni)
+(require 'expand-region)
 
 (defgroup chairs nil
   "CHAnge and Add pAIRS."
@@ -242,15 +244,19 @@ When there's an active balanced region, rewrap it surroundings
 with insert pairs."
   (interactive)
   (let* ((orig-point (point))
-         (bounds-inside
-          (if (use-region-p)
-              (let ((beg (region-beginning))
-                    (end (region-end)))
-                (unless (puni-region-balance-p beg end 'strict)
-                  (user-error "CHAIRS: The active region is not balanced"))
-                (cons beg end))
-            (puni-bounds-of-list-around-point)))
-         (bounds-around (puni-bounds-of-sexp-around-point)))
+         (bounds-around
+          (save-mark-and-excursion
+            (unless (use-region-p)
+              (er--expand-region-1)
+              (while (not (or (= (point) (point-min))
+                                 (cl-some (lambda (x)
+                                            (and (= (char-after) (car x))
+                                                 (= (char-before (region-end))
+                                                    (chairs--get-closing-from-opening (car x)))))
+                                          chairs-pairs-alist)))
+                (er--expand-region-1)))
+            (bounds-of-thing-at-point 'region)))
+         (bounds-inside (cons (1+ (car bounds-around)) (1- (cdr bounds-around)))))
     (chairs--general bounds-around bounds-inside)
     (goto-char orig-point)))
 
@@ -260,13 +266,10 @@ with insert pairs."
   (interactive)
   (let ((orig-point (point))
         (bounds-at-pt
-         (if (use-region-p)
-             (let ((beg (region-beginning))
-                   (end (region-end)))
-               (unless (puni-region-balance-p beg end 'strict)
-                 (user-error "CHAIRS: The active region is not balanced"))
-               (cons beg end))
-           (puni-bounds-of-sexp-at-point))))
+         (save-mark-and-excursion
+           (unless (use-region-p)
+             (er--expand-region-1))
+           (bounds-of-thing-at-point 'region))))
     (chairs--general bounds-at-pt bounds-at-pt)
     (goto-char orig-point)))
 
